@@ -19,10 +19,11 @@ class App extends React.Component {
   }
 
   getLocation = async () => {
-    const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.searchQuery}&format=json`
+    console.log(this.state.searchQuery);
+    // const url = `https://us1.locationiq.com/v1/reverse.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&lat=LATITUDE&lon=LONGITUDE&format=json`
+    const url = `https://us1.locationiq.com/v1/search.php?key=${this.state.key}&q=${this.state.searchQuery}& format=json`;
     const locationResponse = await axios.get(url);
     console.log(locationResponse.data[0]);
-    this.setState({ locationObj: locationResponse.data[0] });
   }
   render() {
     return (
