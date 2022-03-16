@@ -6,15 +6,15 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchQuery: "",
-      key: "pk.9706811213538caed737b6b522097a67"
+      searchQuery: ""
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(event.target.value);
-    this.setState({ searchQuery: event.target.value })
+  handleSubmit = (evt) => {
+    evt.preventDefault();
+    console.log(evt.target.city.value);
+    this.setState({ searchQuery: evt.target.city.value })
     this.getLocation();
   }
 
@@ -28,8 +28,8 @@ class App extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input placeholder='search for a city' />
-          <button>Explore!</button>
+          <input name='city' placeholder='search for a city' />
+          <input type='submit' />
         </form>
       </div>
     )
