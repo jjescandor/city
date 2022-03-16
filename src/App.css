@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.cityCard{
+  height: 50%;
+  width: 30%;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom: 10rem;
+  box-shadow: 0 10px 6px -6px rgb(134, 136, 134);
+}
+
+.cityCard img{
+  margin: 1rem;
+  border-radius: 3%;
+  box-shadow: 0 10px 6px -6px rgb(134, 136, 134);
+}
+
+.App input{
+  margin:3rem 0 3rem 0;
+}
+
