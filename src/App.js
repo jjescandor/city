@@ -22,17 +22,17 @@ class App extends React.Component {
       this.setState({ locationObj: locationResponse.data[0] });
       this.getMap();
     } catch (e) {
-      return "The website is down :("
+      this.setState({ APIerror: "Your query encountered an error :(" });
     }
   }
 
   getMap = async () => {
     try {
-      const mapUrlTwo = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.locationObj.lat},${this.state.locationObj.lon}&zoom=${10}&size=${400}x${500}&format=jpeg&maptype=<MapType>&markers=icon:large-purple-cutout|${this.state.locationObj.lat},${this.state.locationObj.lon}&markers=icon:large-purple-cutout|${this.state.locationObj.lat},${this.state.locationObj.lon}`;
+      const mapUrlTwo = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.locationObj.lat},${this.state.locationObj.lon}&zoom=${10}&size=${500}x${500}&format=jpeg&maptype=<MapType>&markers=icon:large-purple-cutout|${this.state.locationObj.lat},${this.state.locationObj.lon}&markers=icon:large-purple-cutout|${this.state.locationObj.lat},${this.state.locationObj.lon}`;
       const mapResponse = await axios.get(mapUrlTwo);
       this.setState({ mapResponse: mapResponse.config.url });
     } catch (e) {
-      return "The website is down :("
+      this.setState({ APIerror: "The website is down :(" });
     }
   }
   render() {
@@ -49,6 +49,9 @@ class App extends React.Component {
             <h3>Latitude: {parseInt(this.state.locationObj.lat)}</h3>
             <h3>Longitude: {parseInt(this.state.locationObj.lon)}</h3>
           </Card>
+        }
+        {this.state.APIerror &&
+          <h1>{this.state.APIerror}</h1>
         }
       </div>
     )
