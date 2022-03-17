@@ -54,9 +54,9 @@ class App extends React.Component {
           {this.state.locationObj.display_name &&
             <Card className='cityCard'>
               <h2>{this.state.locationObj.display_name}</h2>
-              <img src={this.state.mapResponse} alt="this" />
               <h3>Latitude: {parseInt(this.state.locationObj.lat)}</h3>
               <h3>Longitude: {parseInt(this.state.locationObj.lon)}</h3>
+              <img src={this.state.mapResponse} alt="this" />
             </Card>
           }
           {this.state.APIerror &&
