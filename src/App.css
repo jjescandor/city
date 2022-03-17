@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color:rgb(143, 139, 139)
 }
 
 .App-link {
@@ -37,22 +37,52 @@
   }
 }
 
+input{
+  height:3rem;
+  width:22rem;
+  border: none;
+  border-top-left-radius: 3%;
+  border-bottom-left-radius: 3%;
+}
+
+button{
+  height: 3.05rem;
+  width:10rem;
+  border-top-right-radius: 3%;
+  border-bottom-right-radius: 3%;
+  border: none;
+  background-color:coral;
+  color:rgb(26,44,65);
+  font-size: 1rem;
+}
+
+button:hover{
+  background-color: rgb(48, 47, 47);
+  color:white;
+}
+
 .cityCard{
+  background-color: aliceblue;
   height: 50%;
-  width: 30%;
+  width: 50%;
   margin-left:auto;
   margin-right:auto;
   margin-bottom: 10rem;
-  box-shadow: 0 10px 6px -6px rgb(134, 136, 134);
+  box-shadow: 0 10px 6px -6px lightcoral;
 }
 
 .cityCard img{
-  margin: 1rem;
+  margin: 5rem;
   border-radius: 50%;
   box-shadow: 0 10px 6px -6px rgb(134, 136, 134);
 }
 
 .App input{
   margin:3rem 0 3rem 0;
+}
+
+.errMsg{
+  margin:auto;
+  color:white;
 }
 
