@@ -62,19 +62,28 @@ button:hover{
 }
 
 .cityCard{
-  background-color: aliceblue;
+  background-color:  transparent;
   height: 50%;
   width: 50%;
   margin-left:auto;
   margin-right:auto;
   margin-bottom: 10rem;
-  box-shadow: 0 10px 6px -6px lightcoral;
+  border: none;
+  COLOR:WHITE;
+  /*box-shadow: 0 10px 6px -6px lightcoral;*/
 }
 
 .cityCard img{
-  margin: 5rem;
+  margin: 1rem;
   border-radius: 50%;
-  box-shadow: 0 10px 6px -6px rgb(134, 136, 134);
+  border:5px solid transparent;
+  transition-duration: 350ms;
+}
+
+.cityCard img:hover{
+ opacity: 80%;
+ border:5px solid red;
+ transition-duration: 350ms;
 }
 
 .App input{
