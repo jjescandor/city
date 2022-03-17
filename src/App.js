@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
+import Header from './Header.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -26,6 +27,12 @@ class App extends React.Component {
     }
   }
 
+  handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      this.getLocation();
+    }
+  }
+
   getMap = async () => {
     try {
       const mapUrlTwo = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.locationObj.lat},${this.state.locationObj.lon}&zoom=${10}&size=${500}x${500}&format=jpeg&maptype=<MapType>&markers=icon:large-purple-cutout|${this.state.locationObj.lat},${this.state.locationObj.lon}&markers=icon:large-purple-cutout|${this.state.locationObj.lat},${this.state.locationObj.lon}`;
@@ -37,23 +44,26 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className="App">
-        <input placeholder='search for a city' onChange={(evt) => {
-          this.setState({ searchQuery: evt.target.value })
-        }} />
-        <button onClick={this.getLocation} >Click Me</button>
-        {this.state.locationObj.display_name &&
-          <Card className='cityCard'>
-            <h2>{this.state.locationObj.display_name}</h2>
-            <img src={this.state.mapResponse} alt="this" />
-            <h3>Latitude: {parseInt(this.state.locationObj.lat)}</h3>
-            <h3>Longitude: {parseInt(this.state.locationObj.lon)}</h3>
-          </Card>
-        }
-        {this.state.APIerror &&
-          <h1>{this.state.APIerror}</h1>
-        }
-      </div>
+      <>
+        <Header />
+        <div className="App" onKeyPress={this.handleKeyPress}>
+          <input placeholder='search for a city' onChange={(evt) => {
+            this.setState({ searchQuery: evt.target.value })
+          }} />
+          <button onClick={this.getLocation} >Click Me</button>
+          {this.state.locationObj.display_name &&
+            <Card className='cityCard'>
+              <h2>{this.state.locationObj.display_name}</h2>
+              <img src={this.state.mapResponse} alt="this" />
+              <h3>Latitude: {parseInt(this.state.locationObj.lat)}</h3>
+              <h3>Longitude: {parseInt(this.state.locationObj.lon)}</h3>
+            </Card>
+          }
+          {this.state.APIerror &&
+            <h1 className="errMsg">{this.state.APIerror}</h1>
+          }
+        </div>
+      </>
     )
   }
 }

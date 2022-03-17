@@ -1,0 +1,13 @@
+h1{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    margin-left: 40%;
+    color:white
+}
+
+.Redh1{
+    color:red
+
+}
