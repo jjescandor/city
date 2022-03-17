@@ -9,22 +9,31 @@ class App extends React.Component {
     this.state = {
       searchQuery: "",
       locationObj: "",
-      mapResponse: ""
+      mapResponse: "",
+      APIerror: ""
     }
   }
 
   getLocation = async () => {
-    const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.searchQuery}&format=json`;
-    const locationResponse = await axios.get(url);
-    this.setState({ locationObj: locationResponse.data[0] });
-    this.getMap();
+    try {
+      const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.searchQuery}&format=json`;
+      const locationResponse = await axios.get(url);
+      console.log(locationResponse);
+      this.setState({ locationObj: locationResponse.data[0] });
+      this.getMap();
+    } catch (e) {
+      return "The website is down :("
+    }
   }
 
   getMap = async () => {
-    const mapUrlTwo = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.locationObj.lat},${this.state.locationObj.lon}&zoom=${13}&size=${300}x${500}&format=jpeg&maptype=<MapType>&markers=icon:large-purple-cutout|${this.state.locationObj.lat},${this.state.locationObj.lon}&markers=icon:large-purple-cutout|${this.state.locationObj.lat},${this.state.locationObj.lon}`;
-    const mapResponse = await axios.get(mapUrlTwo);
-    console.log(mapResponse.data);
-    this.setState({ mapResponse: mapResponse.config.url });
+    try {
+      const mapUrlTwo = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.locationObj.lat},${this.state.locationObj.lon}&zoom=${10}&size=${400}x${500}&format=jpeg&maptype=<MapType>&markers=icon:large-purple-cutout|${this.state.locationObj.lat},${this.state.locationObj.lon}&markers=icon:large-purple-cutout|${this.state.locationObj.lat},${this.state.locationObj.lon}`;
+      const mapResponse = await axios.get(mapUrlTwo);
+      this.setState({ mapResponse: mapResponse.config.url });
+    } catch (e) {
+      return "The website is down :("
+    }
   }
   render() {
     return (
