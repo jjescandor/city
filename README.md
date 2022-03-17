@@ -1,12 +1,12 @@
 
 
-# City JJ The Explorer
+# Cyber City  Explorer
 
-**Author**: Your Name Goes Here
+**Author**: JJ Escandor
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
-- This application takes advantage of third party API called LocationIQ.
+- This application takes advantage of third party API called LocationIQ. The deployed site can be found [here](https://jj-the-explorer.netlify.app)
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
 
 ## Getting Started
