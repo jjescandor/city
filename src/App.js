@@ -21,6 +21,7 @@ class App extends React.Component {
       const locationResponse = await axios.get(url);
       console.log(locationResponse);
       this.setState({ locationObj: locationResponse.data[0] });
+      this.setState({ APIerror: "" });
       this.getMap();
     } catch (e) {
       this.setState({ APIerror: "Your query encountered an error :(" });
@@ -38,6 +39,7 @@ class App extends React.Component {
       const mapUrlTwo = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.locationObj.lat},${this.state.locationObj.lon}&zoom=${10}&size=${500}x${500}&format=jpeg&maptype=<MapType>&markers=icon:large-purple-cutout|${this.state.locationObj.lat},${this.state.locationObj.lon}&markers=icon:large-purple-cutout|${this.state.locationObj.lat},${this.state.locationObj.lon}`;
       const mapResponse = await axios.get(mapUrlTwo);
       this.setState({ mapResponse: mapResponse.config.url });
+      this.setState({ APIerror: "" });
     } catch (e) {
       this.setState({ APIerror: "The website is down :(" });
     }
