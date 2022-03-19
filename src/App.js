@@ -25,6 +25,7 @@ class App extends React.Component {
       this.getMap();
     } catch (e) {
       this.setState({ APIerror: "Your query encountered an error :(" });
+      this.setState({ locationObj: "" });
     }
   }
 
@@ -42,6 +43,7 @@ class App extends React.Component {
       this.setState({ APIerror: "" });
     } catch (e) {
       this.setState({ APIerror: "The website is down :(" });
+      this.setState({ locationObj: "" });
     }
   }
   render() {
@@ -58,7 +60,7 @@ class App extends React.Component {
               <h2>{this.state.locationObj.display_name}</h2>
               <h3>Latitude: {parseInt(this.state.locationObj.lat)}</h3>
               <h3>Longitude: {parseInt(this.state.locationObj.lon)}</h3>
-              <img src={this.state.mapResponse} alt="this" />
+              <img src={this.state.mapResponse} alt={this.state.locationObj.display_name} />
             </Card>
           }
           {this.state.APIerror &&
