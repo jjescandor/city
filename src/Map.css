@@ -1,0 +1,29 @@
+
+.cityCard{
+    background-color:  transparent;
+    height: 50%;
+    width: 50%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom: none;
+    border: none;
+    color:WHITE;
+    display: flex;
+    align-items: center;
+    /*box-shadow: 0 10px 6px -6px lightcoral;*/
+  }
+  
+  .cityCard img{
+      width:50rem;
+    margin: 1rem;
+    border-radius: 50%;
+    border:5px solid transparent;
+    transition-duration: 350ms;
+
+  }
+  
+  .cityCard img:hover{
+   opacity: 80%;
+   border:5px solid red;
+   transition-duration: 350ms;
+  }

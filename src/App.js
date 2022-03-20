@@ -1,8 +1,10 @@
 import './App.css';
 import React from 'react';
 import axios from 'axios';
-import Card from 'react-bootstrap/Card';
-import Header from './Header.js';
+import Map from './Map';
+import Header from './Header';
+import Weather from './Weather';
+import APIerr from './APIerr';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +12,6 @@ class App extends React.Component {
     this.state = {
       searchQuery: "",
       locationObj: "",
-      mapResponse: "",
       weatherResponse: '',
       weatherResponseErr: null,
       APIerror: ""
@@ -24,7 +25,6 @@ class App extends React.Component {
       this.setState({ locationObj: locationResponse.data[0] });
       this.setState({ APIerror: "" });
       this.getWeather();
-      this.getMap();
     } catch (e) {
       this.setState({ APIerror: e.message });
       this.setState({ locationObj: "" });
@@ -36,18 +36,6 @@ class App extends React.Component {
     if (evt.key === 'Enter') {
       this.getLocation();
       evt.target.value = '';
-    }
-  }
-
-  getMap = async () => {
-    try {
-      const mapUrlTwo = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.locationObj.lat},${this.state.locationObj.lon}&zoom=${10}&size=${500}x${500}&format=jpeg&maptype=<MapType>&markers=icon:large-purple-cutout|${this.state.locationObj.lat},${this.state.locationObj.lon}&markers=icon:large-purple-cutout|${this.state.locationObj.lat},${this.state.locationObj.lon}`;
-      const mapResponse = await axios.get(mapUrlTwo);
-      this.setState({ mapResponse: mapResponse.config.url });
-      this.setState({ APIerror: "" });
-    } catch (e) {
-      this.setState({ APIerror: e.message });
-      this.setState({ locationObj: "" });
     }
   }
 
@@ -76,27 +64,10 @@ class App extends React.Component {
             this.setState({ searchQuery: evt.target.value });
           }} />
           <button onClick={this.getLocation} >Click Me</button>
-          {this.state.locationObj.display_name &&
-            <Card className='cityCard'>
-              <h2>{this.state.locationObj.display_name}</h2>
-              <h3>Latitude: {parseInt(this.state.locationObj.lat)}</h3>
-              <h3>Longitude: {parseInt(this.state.locationObj.lon)}</h3>
-              <img src={this.state.mapResponse} alt={this.state.locationObj.display_name} />
-            </Card>
-          }
-          {this.state.weatherResponse &&
-            <>
-              {this.state.weatherResponse.map((value, idx) => {
-                return <h2 key={idx}>{value.description}</h2>
-              })};
-            </>
-          }
-          {this.state.APIerror &&
-            <h1 className="errMsg">{this.state.APIerror}</h1>}
-
-          {this.state.weatherResponseErr &&
-            <h1 style={{ margin: 'auto' }}>{this.state.weatherResponseErr}</h1>}
         </div>
+        <Map locationObj={this.state.locationObj} />
+        <Weather weatherResponse={this.state.weatherResponse} />
+        <APIerr APIerror={this.state.APIerror} weatherResponseErr={this.state.weatherResponseErr} />
       </>
     )
   }

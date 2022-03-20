@@ -1,0 +1,12 @@
+.errMsg{
+    margin:auto;
+    color:white;
+    position: center;
+  }
+
+.errContainer{
+    margin:auto;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
