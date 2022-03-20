@@ -19,12 +19,11 @@ class App extends React.Component {
     try {
       const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.searchQuery}&format=json`;
       const locationResponse = await axios.get(url);
-      console.log(locationResponse);
       this.setState({ locationObj: locationResponse.data[0] });
       this.setState({ APIerror: "" });
       this.getMap();
     } catch (e) {
-      this.setState({ APIerror: "Your query encountered an error :(" });
+      this.setState({ APIerror: e.message });
       this.setState({ locationObj: "" });
     }
   }
@@ -42,7 +41,7 @@ class App extends React.Component {
       this.setState({ mapResponse: mapResponse.config.url });
       this.setState({ APIerror: "" });
     } catch (e) {
-      this.setState({ APIerror: "The website is down :(" });
+      this.setState({ APIerror: e.message });
       this.setState({ locationObj: "" });
     }
   }
