@@ -52,7 +52,11 @@ class App extends React.Component {
     try {
       const weatherUrl = `http://localhost:3001/weather?type=${this.state.locationObj.lat}&type=${this.state.locationObj.lon}`;
       const weatherResponse = await axios.get(weatherUrl);
-      this.setState({ weatherResponse: weatherResponse.data });
+      if (weatherResponse.data) {
+        this.setState({ weatherResponse: weatherResponse.data });
+      } else {
+        alert("No available weather data for this city at this time");
+      }
     } catch (e) {
 
     }
