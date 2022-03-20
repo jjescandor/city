@@ -21,8 +21,8 @@ class App extends React.Component {
       const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.searchQuery}&format=json`;
       const locationResponse = await axios.get(url);
       this.setState({ locationObj: locationResponse.data[0] });
-      this.getWeather();
       this.setState({ APIerror: "" });
+      this.getWeather();
       this.getMap();
     } catch (e) {
       this.setState({ APIerror: e.message });
