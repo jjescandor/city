@@ -11,7 +11,8 @@ class App extends React.Component {
       searchQuery: "",
       locationObj: "",
       mapResponse: "",
-      weatherResponse: [],
+      weatherResponse: '',
+      weatherResponseErr: null,
       APIerror: ""
     }
   }
@@ -27,12 +28,14 @@ class App extends React.Component {
     } catch (e) {
       this.setState({ APIerror: e.message });
       this.setState({ locationObj: "" });
+      this.setState({ weatherResponse: null });
     }
   }
 
-  handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
+  handleKeyPress = (evt) => {
+    if (evt.key === 'Enter') {
       this.getLocation();
+      evt.target.value = '';
     }
   }
 
@@ -50,15 +53,17 @@ class App extends React.Component {
 
   getWeather = async () => {
     try {
-      const weatherUrl = `http://localhost:3001/weather?type=${this.state.locationObj.lat}&type=${this.state.locationObj.lon}`;
+      const weatherUrl = `http://localhost:3001/weather?lat=${this.state.locationObj.lat}&lon=${this.state.locationObj.lon}`;
       const weatherResponse = await axios.get(weatherUrl);
-      if (weatherResponse.data) {
-        this.setState({ weatherResponse: weatherResponse.data });
+      if (weatherResponse.data.length > 0) {
+        this.setState({ weatherResponse: weatherResponse.data })
+        this.setState({ weatherResponseErr: null });
       } else {
-        alert("No available weather data for this city at this time");
-      }
+        this.setState({ weatherResponseErr: "No available weather data for this city at this time" });
+        this.setState({ weatherResponse: '' });
+      };
     } catch (e) {
-
+      this.setState({ weatherResponseErr: e.message });
     }
   }
 
@@ -68,7 +73,7 @@ class App extends React.Component {
         <Header />
         <div className="App" onKeyPress={this.handleKeyPress}>
           <input placeholder='search for a city' onChange={(evt) => {
-            this.setState({ searchQuery: evt.target.value })
+            this.setState({ searchQuery: evt.target.value });
           }} />
           <button onClick={this.getLocation} >Click Me</button>
           {this.state.locationObj.display_name &&
@@ -79,19 +84,18 @@ class App extends React.Component {
               <img src={this.state.mapResponse} alt={this.state.locationObj.display_name} />
             </Card>
           }
-
-          <ul>
-            {this.state.weatherResponse.length > 0 &&
-              <>
-                {this.state.weatherResponse.map((value, idx) => {
-                  return <li key={idx}>{value.description}</li>
-                })};
-              </>
-            }
-          </ul>
-          {this.state.APIerror &&
-            <h1 className="errMsg">{this.state.APIerror}</h1>
+          {this.state.weatherResponse &&
+            <>
+              {this.state.weatherResponse.map((value, idx) => {
+                return <h2 key={idx}>{value.description}</h2>
+              })};
+            </>
           }
+          {this.state.APIerror &&
+            <h1 className="errMsg">{this.state.APIerror}</h1>}
+
+          {this.state.weatherResponseErr &&
+            <h1 style={{ margin: 'auto' }}>{this.state.weatherResponseErr}</h1>}
         </div>
       </>
     )
