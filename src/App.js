@@ -11,6 +11,7 @@ class App extends React.Component {
       searchQuery: "",
       locationObj: "",
       mapResponse: "",
+      weatherResponse: [],
       APIerror: ""
     }
   }
@@ -19,12 +20,12 @@ class App extends React.Component {
     try {
       const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.searchQuery}&format=json`;
       const locationResponse = await axios.get(url);
-      console.log(locationResponse);
       this.setState({ locationObj: locationResponse.data[0] });
+      this.getWeather();
       this.setState({ APIerror: "" });
       this.getMap();
     } catch (e) {
-      this.setState({ APIerror: "Your query encountered an error :(" });
+      this.setState({ APIerror: e.message });
       this.setState({ locationObj: "" });
     }
   }
@@ -42,10 +43,21 @@ class App extends React.Component {
       this.setState({ mapResponse: mapResponse.config.url });
       this.setState({ APIerror: "" });
     } catch (e) {
-      this.setState({ APIerror: "The website is down :(" });
+      this.setState({ APIerror: e.message });
       this.setState({ locationObj: "" });
     }
   }
+
+  getWeather = async () => {
+    try {
+      const weatherUrl = `http://localhost:3001/weather?type=${this.state.locationObj.lat}&type=${this.state.locationObj.lon}`;
+      const weatherResponse = await axios.get(weatherUrl);
+      this.setState({ weatherResponse: weatherResponse.data });
+    } catch (e) {
+
+    }
+  }
+
   render() {
     return (
       <>
@@ -63,6 +75,16 @@ class App extends React.Component {
               <img src={this.state.mapResponse} alt={this.state.locationObj.display_name} />
             </Card>
           }
+
+          <ul>
+            {this.state.weatherResponse.length > 0 &&
+              <>
+                {this.state.weatherResponse.map((value, idx) => {
+                  return <li key={idx}>{this.state.weatherResponse[0].description}</li>
+                })};
+              </>
+            }
+          </ul>
           {this.state.APIerror &&
             <h1 className="errMsg">{this.state.APIerror}</h1>
           }
