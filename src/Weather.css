@@ -1,0 +1,21 @@
+
+.forecastCont{
+    width: 50%;
+    margin:auto;
+}
+
+.forecastItem,
+.forecastHeader{
+    margin:auto;
+    background-color: #1A2C41;
+    color:white;
+}
+
+.according-header{
+    background-color: yellow;
+}
+
+.forecastCont.forecastHeader {
+    color:yellow;
+    background-color: yellow;
+}
