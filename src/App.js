@@ -1,8 +1,9 @@
 import './App.css';
 import React from 'react';
 import axios from 'axios';
-import Map from './Map';
 import Header from './Header';
+import SearchCity from './SearchCity';
+import Map from './Map';
 import Weather from './Weather';
 import APIerr from './APIerr';
 
@@ -10,17 +11,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchQuery: "",
-      locationObj: "",
+      locationObj: '',
       weatherResponse: '',
       weatherResponseErr: null,
-      APIerror: ""
+      APIerror: ''
     }
   }
 
-  getLocation = async () => {
+  getLocation = async (city) => {
     try {
-      const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.searchQuery}&format=json`;
+      const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${city}&format=json`;
       const locationResponse = await axios.get(url);
       this.setState({ locationObj: locationResponse.data[0] });
       this.setState({ APIerror: "" });
@@ -29,13 +29,6 @@ class App extends React.Component {
       this.setState({ APIerror: e.message });
       this.setState({ locationObj: "" });
       this.setState({ weatherResponse: null });
-    }
-  }
-
-  handleKeyPress = (evt) => {
-    if (evt.key === 'Enter') {
-      this.getLocation();
-      evt.target.value = '';
     }
   }
 
@@ -59,12 +52,7 @@ class App extends React.Component {
     return (
       <>
         <Header />
-        <div className="App" onKeyPress={this.handleKeyPress}>
-          <input placeholder='search for a city' onChange={(evt) => {
-            this.setState({ searchQuery: evt.target.value });
-          }} />
-          <button onClick={this.getLocation} >Click Me</button>
-        </div>
+        <SearchCity getLocation={this.getLocation} />
         <Map locationObj={this.state.locationObj} />
         <Weather weatherResponse={this.state.weatherResponse} />
         <APIerr APIerror={this.state.APIerror} weatherResponseErr={this.state.weatherResponseErr} />

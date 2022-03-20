@@ -1,0 +1,27 @@
+input{
+    height:3rem;
+    width:22rem;
+    border: none;
+    border-top-left-radius: 3%;
+    border-bottom-left-radius: 3%;
+  }
+  
+  button{
+    height: 3.05rem;
+    width:10rem;
+    border-top-right-radius: 3%;
+    border-bottom-right-radius: 3%;
+    border: none;
+    background-color:coral;
+    color:rgb(26,44,65);
+    font-size: 1rem;
+  }
+  
+  button:hover{
+    background-color: rgb(48, 47, 47);
+    color:white;
+  }
+  
+  .App input{
+    margin:3rem 0 3rem 0;
+  }
