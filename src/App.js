@@ -80,7 +80,7 @@ class App extends React.Component {
             {this.state.weatherResponse.length > 0 &&
               <>
                 {this.state.weatherResponse.map((value, idx) => {
-                  return <li key={idx}>{this.state.weatherResponse[0].description}</li>
+                  return <li key={idx}>{value.description}</li>
                 })};
               </>
             }
