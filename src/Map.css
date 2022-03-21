@@ -14,12 +14,11 @@
   }
   
   .cityCard img{
-      width:50rem;
+    width:80%;
     margin: 1rem;
     border-radius: 50%;
     border:5px solid transparent;
     transition-duration: 350ms;
-
   }
   
   .cityCard img:hover{
