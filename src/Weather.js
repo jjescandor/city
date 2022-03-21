@@ -10,13 +10,13 @@ class Weather extends React.Component {
                     {this.props.weatherResponse.map((value, idx) => {
                         return (
                             <Accordion.Item className='forecastItem' eventKey={idx} key={idx} flush>
-                                <Accordion.Header className='forecastHeader'>{value.date}</Accordion.Header>
+                                <Accordion.Header className='forecastHeader' flush>{value.date}</Accordion.Header>
                                 <Accordion.Body>
                                     {value.description}
                                 </Accordion.Body>
                             </Accordion.Item>
                         )
-                    })};
+                    })}
                 </Accordion>
             }</>
         );
