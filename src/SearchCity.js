@@ -10,12 +10,16 @@ class SearchCity extends React.Component {
         }
     }
 
+    handleChange = (evt) => {
+        this.setState({ searchQuery: evt.target.value });
+    }
+
     handleClick = (evt) => {
         this.props.getLocation(this.state.searchQuery);
         evt.target.value = '';
     }
 
-    handleKeyPress = (evt) => {
+    handleKeyDown = (evt) => {
         if (evt.key === 'Enter') {
             this.props.getLocation(this.state.searchQuery);
             evt.target.value = '';
@@ -23,11 +27,9 @@ class SearchCity extends React.Component {
     }
     render() {
         return (
-            <div className="App" onKeyPress={this.handleKeyPress}>
-                <input placeholder='search for a city' onChange={(evt) => {
-                    this.setState({ searchQuery: evt.target.value });
-                }} />
-                <button onClick={this.handleClick} >Click Me</button>
+            <div className="App" onKeyDown={this.handleKeyDown}>
+                <input placeholder=' search for a city or a zip code' onChange={this.handleChange} />
+                <button onClick={this.handleClick} >Search</button>
             </div>
         );
     }
