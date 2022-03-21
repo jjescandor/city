@@ -5,6 +5,14 @@
     margin-bottom: 10rem;
 }
 
+.forecastItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+}
+
 .forecastItem,
 .forecastHeader{
     margin:auto;
@@ -12,8 +20,16 @@
     color:white;
 }
 
+.forecastHeader{
+    margin-right:1rem;
+}
+
 .accordion-button{
-    background-color: #494949;  
+    background-color: lightcoral;  
     color: white;
+}
+
+.weatherType{
+    position:center;
 }
 
