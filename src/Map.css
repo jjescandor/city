@@ -10,7 +10,7 @@
     color:WHITE;
     display: flex;
     align-items: center;
-    /*box-shadow: 0 10px 6px -6px lightcoral;*/
+    align-content: center;
   }
   
   .cityCard img{

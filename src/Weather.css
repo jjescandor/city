@@ -2,6 +2,7 @@
 .forecastCont{
     width: 50%;
     margin:auto;
+    margin-bottom: 10rem;
 }
 
 .forecastItem,
@@ -11,11 +12,8 @@
     color:white;
 }
 
-.according-header{
-    background-color: yellow;
+.accordion-button{
+    background-color: #494949;  
+    color: white;
 }
 
-.forecastCont.forecastHeader {
-    color:yellow;
-    background-color: yellow;
-}
