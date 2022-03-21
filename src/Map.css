@@ -26,3 +26,7 @@
    border:5px solid red;
    transition-duration: 350ms;
   }
+
+  .placeholder{
+    color:transparent;
+  }

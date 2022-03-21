@@ -4,6 +4,7 @@ import './Weather.css';
 import { IoIosCloud } from "react-icons/io";
 import { IoRainy } from "react-icons/io5";
 import { IoSunny } from "react-icons/io5";
+import { IoIosThunderstorm } from "react-icons/io";
 
 class Weather extends React.Component {
     render() {
@@ -19,6 +20,8 @@ class Weather extends React.Component {
                                     <IoRainy />}
                                 {value.type === 'sun' &&
                                     <IoSunny />}
+                                {value.type === 'thunder' &&
+                                    <h3><IoIosThunderstorm /></h3>}
                                 <Accordion.Header className='forecastHeader'>{value.date}</Accordion.Header>
 
                                 <Accordion.Body>
