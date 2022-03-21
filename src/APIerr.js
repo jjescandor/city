@@ -8,11 +8,11 @@ class APIerr extends React.Component {
         return (
             <Modal show={this.props.errShow}>
                 <Modal.Body className='errModal'>
-                    <p>{this.props.APIerror}</p>
-                    <p>{this.props.weatherResponseErr}</p>
+                    <h4>{this.props.APIerror}</h4>
+                    <h4>{this.props.weatherResponseErr}</h4>
                 </Modal.Body>
                 <Modal.Footer className='errModal'>
-                    <Button className='errButton' onClick={this.props.handleErrClose}>Close</Button>
+                    <Button className='errButton' onClick={this.props.handleErrClose} >Close</Button>
                 </Modal.Footer>
             </Modal>
         );
