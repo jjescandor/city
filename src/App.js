@@ -14,11 +14,14 @@ class App extends React.Component {
       locationObj: '',
       weatherResponse: '',
       weatherResponseErr: null,
-      APIerror: ''
+      APIerror: '',
+      errShow: false,
+      city: ''
     }
   }
 
   getLocation = async (city) => {
+    this.setState({ city: city });
     try {
       const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${city}&format=json`;
       const locationResponse = await axios.get(url);
@@ -29,6 +32,8 @@ class App extends React.Component {
       this.setState({ APIerror: e.message });
       this.setState({ locationObj: "" });
       this.setState({ weatherResponse: null });
+      this.setState({ weatherResponseErr: '' })
+      this.setState({ errShow: true });
     }
   }
 
@@ -38,14 +43,21 @@ class App extends React.Component {
       const weatherResponse = await axios.get(weatherUrl);
       if (weatherResponse.data.length > 0) {
         this.setState({ weatherResponse: weatherResponse.data })
-        this.setState({ weatherResponseErr: null });
+        this.setState({ weatherResponseErr: '' });
       } else {
-        this.setState({ weatherResponseErr: "No available weather data for this city at this time" });
+        this.setState({ weatherResponseErr: `No available weather data for ${this.state.city} at this time` });
+        this.setState({ errShow: true });
         this.setState({ weatherResponse: '' });
       };
     } catch (e) {
+      this.setState({ APIerror: '' });
       this.setState({ weatherResponseErr: e.message });
+      this.setState({ errShow: true });
     }
+  }
+
+  handleErrClose = () => {
+    this.setState({ errShow: false });
   }
 
   render() {
@@ -55,7 +67,7 @@ class App extends React.Component {
         <SearchCity getLocation={this.getLocation} />
         <Map locationObj={this.state.locationObj} />
         <Weather weatherResponse={this.state.weatherResponse} />
-        <APIerr APIerror={this.state.APIerror} weatherResponseErr={this.state.weatherResponseErr} />
+        <APIerr APIerror={this.state.APIerror} weatherResponseErr={this.state.weatherResponseErr} errShow={this.state.errShow} handleErrClose={this.handleErrClose} />
       </>
     )
   }

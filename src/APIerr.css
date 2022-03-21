@@ -1,12 +1,12 @@
-.errMsg{
-    margin:auto;
-    color:white;
-    position: center;
-  }
 
-.errContainer{
-    margin:auto;
-    display: flex;
-    align-items: center;
-    align-content: center;
+.errModal{
+  background-color: #494949;  
+  color: white;
 }
+
+.errButton{
+  background-color:rgb(26,43,65);
+  border:none;
+}
+
+
