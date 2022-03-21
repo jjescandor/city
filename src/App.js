@@ -45,6 +45,7 @@ class App extends React.Component {
     try {
       const weatherUrl = `http://localhost:3001/weather?lat=${this.state.locationObj.lat}&lon=${this.state.locationObj.lon}`;
       const weatherResponse = await axios.get(weatherUrl);
+      console.log(weatherResponse.data);
       if (weatherResponse.data.length > 0) {
         this.setState({
           weatherResponse: weatherResponse.data,
@@ -75,6 +76,7 @@ class App extends React.Component {
       <>
         <Header />
         <SearchCity getLocation={this.getLocation} />
+
         <Map locationObj={this.state.locationObj} />
         <Weather weatherResponse={this.state.weatherResponse} />
         <APIerr APIerror={this.state.APIerror} weatherResponseErr={this.state.weatherResponseErr} errShow={this.state.errShow} handleErrClose={this.handleErrClose} />
