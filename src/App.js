@@ -36,7 +36,8 @@ class App extends React.Component {
         locationObj: '',
         weatherResponse: null,
         weatherResponseErr: '',
-        errShow: true
+        errShow: true,
+        weatherType: ''
       });
     }
   }
@@ -49,13 +50,15 @@ class App extends React.Component {
       if (weatherResponse.data.length > 0) {
         this.setState({
           weatherResponse: weatherResponse.data,
-          weatherResponseErr: ''
+          weatherResponseErr: '',
+          weatherType: weatherResponse.data[0].type
         })
       } else {
         this.setState({
           weatherResponseErr: `No available weather data for ${this.state.city} at this time`,
           errShow: true,
-          weatherResponse: ''
+          weatherResponse: '',
+          weatherType: ''
         });
       };
     } catch (e) {
@@ -76,8 +79,7 @@ class App extends React.Component {
       <>
         <Header />
         <SearchCity getLocation={this.getLocation} />
-
-        <Map locationObj={this.state.locationObj} />
+        <Map locationObj={this.state.locationObj} weatherType={this.state.weatherType} />
         <Weather weatherResponse={this.state.weatherResponse} />
         <APIerr APIerror={this.state.APIerror} weatherResponseErr={this.state.weatherResponseErr} errShow={this.state.errShow} handleErrClose={this.handleErrClose} />
       </>
