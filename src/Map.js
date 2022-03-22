@@ -12,9 +12,9 @@ class Map extends React.Component {
             <div className='errContainer'>
                 {this.props.locationObj.display_name &&
                     <Card className='cityCard'>
-                        <h2>{this.props.locationObj.display_name}</h2>
-                        <h3>Latitude: {parseInt(this.props.locationObj.lat)}</h3>
-                        <h3>Longitude: {parseInt(this.props.locationObj.lon)}</h3>
+                        <Card.Title>{this.props.locationObj.display_name}</Card.Title>
+                        <Card.Title>Latitude: {parseInt(this.props.locationObj.lat)}</Card.Title>
+                        <Card.Title>Longitude: {parseInt(this.props.locationObj.lon)}</Card.Title>
                         {this.props.weatherType === 'cloud' &&
                             <h3><IoIosCloud /></h3>}
                         {this.props.weatherType === 'rain' &&

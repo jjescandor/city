@@ -1,6 +1,6 @@
 
 .forecastCont{
-    width: 50%;
+    width: 30%;
     margin:auto;
     margin-bottom: 10rem;
 }
@@ -23,6 +23,10 @@
 .forecastHeader{
     margin-right:1rem;
 }
+
+/* .accordion-button .collapsed{
+    margin:2rem;
+} */
 
 .accordion-button{
     background-color: lightcoral;  

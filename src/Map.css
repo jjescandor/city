@@ -22,9 +22,9 @@
   }
   
   .cityCard img:hover{
-   opacity: 80%;
-   border:5px solid red;
-   transition-duration: 350ms;
+  opacity: 80%;
+  border:5px solid red;
+  transition-duration: 350ms;
   }
 
   .placeholder{
