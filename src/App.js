@@ -34,7 +34,7 @@ class App extends React.Component {
       this.setState({
         APIerror: e.message,
         locationObj: '',
-        weatherResponse: null,
+        weatherResponse: '',
         weatherResponseErr: '',
         errShow: true,
         weatherType: ''
@@ -44,7 +44,7 @@ class App extends React.Component {
 
   getWeather = async () => {
     try {
-      const weatherUrl = `http://localhost:3001/weather?lat=${this.state.locationObj.lat}&lon=${this.state.locationObj.lon}`;
+      const weatherUrl = `${process.env.REACT_APP_SERVER}/weather?lat=${this.state.locationObj.lat}&lon=${this.state.locationObj.lon}&search=${this.state.city}`;
       const weatherResponse = await axios.get(weatherUrl);
       console.log(weatherResponse.data);
       if (weatherResponse.data.length > 0) {
