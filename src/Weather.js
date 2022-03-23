@@ -21,7 +21,8 @@ class Weather extends React.Component {
                             )
                         })}
                     </Accordion>
-                }</>
+                }
+            </>
         );
     }
 }
