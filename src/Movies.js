@@ -20,8 +20,10 @@ class Movies extends React.Component {
 
     render() {
         return (
-            <>
-                <Row xs={1} sm={2} md={3} className="movieDiv">
+            <div className="movieDiv">
+                {this.props.movieResults &&
+                    <h4 className="movieH1">MOVIES ABOUT {this.props.city}</h4>}
+                <Row xs={1} sm={2} md={3}>
                     {this.props.movieResults &&
                         this.props.movieResults.map((value, idx) => {
                             return (
@@ -45,7 +47,7 @@ class Movies extends React.Component {
                     movie={this.state.movie}
                     detailShow={this.state.detailShow}
                 />
-            </>
+            </div>
         )
     }
 }
