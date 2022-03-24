@@ -25,12 +25,16 @@ img{
     width: 90%;
     transition: 350ms;
     cursor: pointer;
+    border-radius: .4em;
 }
 
 img:hover{
     opacity:0.7;
     transform: scale(1.05);
     transition:350ms;
+    color:#aaa;
+    background: linear-gradient(to bottom, #57B2FF, #0086F8);
+    box-shadow: 0px 5px 20px 1px;
 }
 
 
