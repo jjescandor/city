@@ -4,6 +4,7 @@ import { IoRainy } from "react-icons/io5";
 import { IoSunny } from "react-icons/io5";
 import { IoIosThunderstorm } from "react-icons/io";
 import { IoSunnyOutline } from "react-icons/io5";
+import { IoSnow } from "react-icons/io5";
 
 class WeatherIcon extends React.Component {
     render() {
@@ -19,6 +20,8 @@ class WeatherIcon extends React.Component {
                     <IoIosThunderstorm />}
                 {this.props.type === 'clear' &&
                     <IoSunnyOutline />}
+                {this.props.type === 'snow' &&
+                    <IoSnow />}
             </>
         )
     }
