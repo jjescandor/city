@@ -18,12 +18,13 @@ class App extends React.Component {
       APIerror: '',
       errShow: false,
       city: '',
-      movieResults: []
+      movieResults: null,
+      movieResErr: ''
     }
   }
 
   getLocation = async (city) => {
-    this.setState({ city: city });
+    this.setState({ city: city.toUpperCase() });
     try {
       const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${city}&format=json`;
       const locationResponse = await axios.get(url);
@@ -40,7 +41,8 @@ class App extends React.Component {
         weatherResponse: '',
         weatherResponseErr: '',
         errShow: true,
-        weatherType: ''
+        weatherType: '',
+        movieResErr: ''
       });
     }
   }
@@ -60,23 +62,30 @@ class App extends React.Component {
           weatherResponseErr: `No available weather data for ${this.state.city} at this time`,
           errShow: true,
           weatherResponse: '',
+          movieResErr: '',
           weatherType: ''
         });
       };
     } catch (e) {
-      this.setState({
-        APIerror: '',
-        weatherResponseErr: e.message,
-        errShow: true
-      });
     }
   }
 
   getMovies = async () => {
-    const url = `${process.env.REACT_APP_SERVER}/movies?query=${this.state.city}`;
-    const movieResults = await axios.get(url);
-    this.setState({ movieResults: movieResults.data });
-    console.log(this.state.movieResults[0]);
+    try {
+      const url = `${process.env.REACT_APP_SERVER}/movies?query=${this.state.city}`;
+      const movieResults = await axios.get(url);
+      this.setState({ movieResults: movieResults.data });
+      console.log(movieResults.data);
+      if (movieResults.data.length <= 0) {
+        this.setState({
+          movieResErr: `NO MOVIES ABOUT ${this.state.city} AT THIS TIME`,
+          movieResults: null,
+          errShow: true,
+        });
+      }
+    } catch (e) {
+
+    }
   }
 
   handleErrClose = () => {
@@ -88,10 +97,25 @@ class App extends React.Component {
       <>
         <Header />
         <SearchCity getLocation={this.getLocation} />
-        <Map locationObj={this.state.locationObj} weatherType={this.state.weatherType} />
-        <Weather weatherResponse={this.state.weatherResponse} />
-        <Movies movieResults={this.state.movieResults} />
-        <APIerr APIerror={this.state.APIerror} weatherResponseErr={this.state.weatherResponseErr} errShow={this.state.errShow} handleErrClose={this.handleErrClose} />
+        <Map
+          locationObj={this.state.locationObj}
+          weatherType={this.state.weatherType}
+        />
+        <Weather
+          weatherResponse={this.state.weatherResponse}
+          city={this.state.city}
+        />
+        <Movies
+          movieResults={this.state.movieResults}
+          city={this.state.city}
+        />
+        <APIerr
+          APIerror={this.state.APIerror}
+          weatherResponseErr={this.state.weatherResponseErr}
+          errShow={this.state.errShow}
+          handleErrClose={this.handleErrClose}
+          movieResErr={this.state.movieResErr}
+        />
       </>
     )
   }

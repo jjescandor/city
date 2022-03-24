@@ -6,7 +6,9 @@ import WeatherIcon from './WeatherIcon.js';
 class Weather extends React.Component {
     render() {
         return (
-            <>
+            <div className='weatherDiv'>
+                {this.props.weatherResponse &&
+                    <h4 className='weatherH1'>WEATHER IN {this.props.city}</h4>}
                 <Accordion className='forecastCont' defaultActiveKey="0">
                     {this.props.weatherResponse &&
                         this.props.weatherResponse.map((value, idx) => {
@@ -19,7 +21,7 @@ class Weather extends React.Component {
                             )
                         })}
                 </Accordion>
-            </>
+            </div>
         )
     };
 }

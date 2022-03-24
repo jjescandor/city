@@ -1,6 +1,11 @@
+
+
+
 .movieDiv{
     width:90%;
     margin:auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .movieCard{
@@ -29,3 +34,8 @@ img:hover{
 }
 
 
+.movieH1{
+    margin:1rem auto 1rem auto;
+    color:white;
+
+}
