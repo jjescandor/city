@@ -5,6 +5,7 @@ import Header from './Header';
 import SearchCity from './SearchCity';
 import Map from './Map';
 import Weather from './Weather';
+import Movies from './Movies';
 import APIerr from './APIerr';
 
 class App extends React.Component {
@@ -16,7 +17,8 @@ class App extends React.Component {
       weatherResponseErr: null,
       APIerror: '',
       errShow: false,
-      city: ''
+      city: '',
+      movieResults: []
     }
   }
 
@@ -30,6 +32,7 @@ class App extends React.Component {
         APIerror: ""
       });
       this.getWeather();
+      this.getMovies();
     } catch (e) {
       this.setState({
         APIerror: e.message,
@@ -46,7 +49,6 @@ class App extends React.Component {
     try {
       const weatherUrl = `${process.env.REACT_APP_SERVER}/weather?lat=${this.state.locationObj.lat}&lon=${this.state.locationObj.lon}&search=${this.state.city}`;
       const weatherResponse = await axios.get(weatherUrl);
-      console.log(weatherResponse.data);
       if (weatherResponse.data.length > 0) {
         this.setState({
           weatherResponse: weatherResponse.data,
@@ -70,6 +72,13 @@ class App extends React.Component {
     }
   }
 
+  getMovies = async () => {
+    const url = `${process.env.REACT_APP_SERVER}/movies?query=${this.state.city}`;
+    const movieResults = await axios.get(url);
+    this.setState({ movieResults: movieResults.data });
+    console.log(this.state.movieResults[0]);
+  }
+
   handleErrClose = () => {
     this.setState({ errShow: false });
   }
@@ -81,6 +90,7 @@ class App extends React.Component {
         <SearchCity getLocation={this.getLocation} />
         <Map locationObj={this.state.locationObj} weatherType={this.state.weatherType} />
         <Weather weatherResponse={this.state.weatherResponse} />
+        <Movies movieResults={this.state.movieResults} />
         <APIerr APIerror={this.state.APIerror} weatherResponseErr={this.state.weatherResponseErr} errShow={this.state.errShow} handleErrClose={this.handleErrClose} />
       </>
     )

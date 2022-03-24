@@ -27,10 +27,12 @@ class SearchCity extends React.Component {
     }
     render() {
         return (
-            <div className="App" onKeyDown={this.handleKeyDown}>
-                <input placeholder=' search for a city or a zip code' onChange={this.handleChange} />
-                <button onClick={this.handleClick} >Search</button>
-            </div>
+            <>
+                <div className="App" onKeyDown={this.handleKeyDown}>
+                    <input placeholder=' search for a city or a zip code' onChange={this.handleChange} />
+                    <button onClick={this.handleClick} >Search</button>
+                </div>
+            </>
         );
     }
 }

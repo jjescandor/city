@@ -11,7 +11,6 @@ class Header extends React.Component {
                     <span className="Redh1">Cyber City</span>
                     <span>Explorer</span>
                 </h1>
-                <div></div>
             </>
         )
     }
