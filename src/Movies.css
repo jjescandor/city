@@ -1,0 +1,31 @@
+.movieDiv{
+    width:90%;
+    margin:auto;
+}
+
+.movieCard{
+    width: 100%;
+    margin:1rem auto rem auto;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    background-color: transparent;
+    color: white;
+    border: none;
+    height:100%;
+}
+
+img{
+    margin-bottom:1rem;
+    width: 90%;
+    transition: 350ms;
+    cursor: pointer;
+}
+
+img:hover{
+    opacity:0.7;
+    transform: scale(1.05);
+    transition:350ms;
+}
+
+
