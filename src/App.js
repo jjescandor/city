@@ -84,7 +84,9 @@ class App extends React.Component {
         });
       }
     } catch (e) {
-
+      this.setState({
+        movieResults: null
+      })
     }
   }
 
