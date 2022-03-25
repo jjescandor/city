@@ -42,7 +42,8 @@ class App extends React.Component {
         weatherResponseErr: '',
         errShow: true,
         weatherType: '',
-        movieResErr: ''
+        movieResErr: '',
+        movieResults: null
       });
     }
   }
@@ -84,7 +85,9 @@ class App extends React.Component {
         });
       }
     } catch (e) {
-
+      this.setState({
+        movieResults: null
+      })
     }
   }
 
