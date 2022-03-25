@@ -30,7 +30,7 @@ class Movies extends React.Component {
                                 <Col key={idx}>
                                     <Card className='movieCard'>
                                         <Card.Title class_name='movieTitle'>{value.title}</Card.Title>
-                                        <img src={value.img_url} alt='' onClick={() => {
+                                        <Card.Img src={value.img_url} alt='' onClick={() => {
                                             this.setState({
                                                 detailShow: true,
                                                 movie: value
