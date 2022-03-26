@@ -31,6 +31,7 @@
 .accordion-button{
     background-color: lightcoral;  
     color: white;
+    width: 200px;
 }
 
 .weatherType{
