@@ -1,7 +1,7 @@
 import React from 'react';
 import { Accordion } from 'react-bootstrap';
 import './Weather.css';
-import WeatherIcon from './WeatherIcon.js';
+import WeatherDay from './WeatherDay.js';
 
 class Weather extends React.Component {
     render() {
@@ -11,15 +11,15 @@ class Weather extends React.Component {
                     <h4 className='weatherH1'>WEATHER IN {this.props.city}</h4>}
                 <Accordion className='forecastCont' defaultActiveKey="0">
                     {this.props.weatherResponse &&
-                        this.props.weatherResponse.map((value, idx) => {
-                            return (
-                                <Accordion.Item className='forecastItem' eventKey={idx} key={idx}>
-                                    <WeatherIcon type={value.type} />
-                                    <Accordion.Header className='forecastHeader'>{value.date}</Accordion.Header>
-                                    <Accordion.Body>{value.description}</Accordion.Body>
-                                </Accordion.Item>
-                            )
-                        })}
+                        this.props.weatherResponse.map((value, idx) =>
+                            <WeatherDay
+                                key={idx}
+                                idx={idx}
+                                type={value.type}
+                                date={value.date}
+                                description={value.description}
+                            />
+                        )}
                 </Accordion>
             </div>
         )

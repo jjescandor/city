@@ -2,8 +2,7 @@ import React from "react";
 import "./Movies.css";
 import Row from 'react-bootstrap/Row';
 import MovieDetails from './MovieDetails.js';
-import { Col } from "react-bootstrap";
-import { Card } from "react-bootstrap";
+import MovieDay from './MovieDay.js';
 
 class Movies extends React.Component {
     constructor(props) {
@@ -18,6 +17,13 @@ class Movies extends React.Component {
         this.setState({ detailShow: false });
     }
 
+    handleClick = (movie) => {
+        this.setState({
+            detailShow: true,
+            movie: movie
+        });
+    }
+
     render() {
         return (
             <div className="movieDiv">
@@ -25,22 +31,15 @@ class Movies extends React.Component {
                     <h4 className="movieH1">MOVIES ABOUT {this.props.city}</h4>}
                 <Row xs={1} sm={2} md={3}>
                     {this.props.movieResults &&
-                        this.props.movieResults.map((value, idx) => {
-                            return (
-                                <Col key={idx}>
-                                    <Card className='movieCard'>
-                                        <Card.Title class_name='movieTitle'>{value.title}</Card.Title>
-                                        <img src={value.img_url} alt='' onClick={() => {
-                                            this.setState({
-                                                detailShow: true,
-                                                movie: value
-                                            })
-                                        }} />
-                                    </Card>
-                                </Col>
-                            )
-                        })
-                    };
+                        this.props.movieResults.map((value, idx) =>
+                            <MovieDay
+                                key={idx}
+                                movie={value}
+                                idx={idx}
+                                handleClick={this.handleClick}
+
+                            />
+                        )};
                 </Row>
                 <MovieDetails
                     handleDetailClose={this.handleDetailClose}
