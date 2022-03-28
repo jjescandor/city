@@ -20,8 +20,7 @@ class MovieDay extends React.Component {
         return (
             <Col key={this.props.idx}>
                 <Card className='movieCard'>
-                    <Card.Title class_name='movieTitle'>{this.props.movie.title}</Card.Title>
-                    <Card.Img src={this.props.movie.img_url} alt='' onClick={this.handleClick} />
+                    <img src={this.props.movie.poster} alt='' onClick={this.handleClick} />
                 </Card>
             </Col>
         );
