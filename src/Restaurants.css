@@ -18,8 +18,18 @@
 }
 
 .resImg{
-    height:80%;
+    height:100%;
     width:100%;
+    transition-duration: 350ms;
+}
+
+.resImg:hover{
+    opacity:0.7;
+    transform: scale(1.01);
+    transition-duration:350ms;
+    color:#aaa;
+    background: linear-gradient(to bottom, #57B2FF, #0086F8);
+    box-shadow: 0px 5px 20px 1px;
 }
 
 .resH1{
@@ -29,4 +39,23 @@
 
 .rating{
     font-size: 5px;
+}
+
+.link{
+    text-decoration: none;
+    height:80%;
+    width:100%;
+}
+
+.titleLink{
+    text-decoration: none;
+}
+
+.resName{
+    color:white;
+    font-size: 1.5rem;
+}
+
+.resName:hover{
+    color:lightcoral
 }

@@ -16,8 +16,14 @@ class Restaurants extends React.Component {
                             return (
                                 <Col key={idx}>
                                     <Card className='resCard'>
-                                        <Card.Title>{value.name}</Card.Title>
-                                        <Card.Img className='resImg' src={value.img} alt='' />
+                                        <a href={value.link} className='titleLink'>
+                                            <Card.Title className='resName'>{value.name}</Card.Title>
+                                        </a>
+                                        <a href={value.link} className='link'>
+                                            <Card.Img
+                                                className='resImg'
+                                                src={value.img}
+                                                alt='' /></a>
                                         <Rating className="rating" ratingValue={value.rating * 20} />
                                         <h6>Phone Number: {value.phone}</h6>
                                         <h6>Address: {value.address}</h6>
