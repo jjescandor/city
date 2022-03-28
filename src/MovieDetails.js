@@ -10,6 +10,7 @@ class MovieDetails extends React.Component {
                 <Modal.Header>{this.props.movie.title}</Modal.Header>
                 <Modal.Body className='detailModalBody'>
                     <img
+                        className="movieModal"
                         src={`https://image.tmdb.org/t/p/w500${this.props.movie.img_url}`}
                         alt={this.props.movie.original_title}
                     />
