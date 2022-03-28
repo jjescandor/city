@@ -1,7 +1,6 @@
 
 .cityCard{
     background-color:  transparent;
-    height: 50%;
     width: 50%;
     margin-left:auto;
     margin-right:auto;
@@ -11,6 +10,18 @@
     display: flex;
     align-items: center;
     align-content: center;
+  }
+
+
+  @media (max-width:600px){
+    .cityCard{
+      width:90%;
+    }
+
+    .cityCard .mapImg{
+      width:100%;
+    }
+    
   }
   
   .cityCard .mapImg{
