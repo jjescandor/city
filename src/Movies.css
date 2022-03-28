@@ -20,7 +20,7 @@
     height:100%;
 }
 
-img{
+.movieImg{
     margin-bottom:3rem;
     width: 90%;
     transition: 350ms;
@@ -29,7 +29,7 @@ img{
     height:100%
 }
 
-img:hover{
+.movieImg:hover{
     opacity:0.7;
     transform: scale(1.05);
     transition:350ms;
