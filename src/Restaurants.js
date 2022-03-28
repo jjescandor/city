@@ -2,6 +2,7 @@ import React from "react";
 import './Restaurants.css';
 import { Row, Col } from "react-bootstrap";
 import { Card } from "react-bootstrap";
+import { Rating } from 'react-simple-star-rating';
 
 class Restaurants extends React.Component {
     render() {
@@ -17,14 +18,14 @@ class Restaurants extends React.Component {
                                     <Card className='resCard'>
                                         <Card.Title>{value.name}</Card.Title>
                                         <Card.Img className='resImg' src={value.img} alt='' />
-                                        <h6>Rating: {value.rating}</h6>
+                                        <Rating className="rating" ratingValue={value.rating * 20} />
                                         <h6>Phone Number: {value.phone}</h6>
                                         <h6>Address: {value.address}</h6>
                                     </Card>
                                 </Col>
                             )
                         }
-                        )};
+                        )}
                 </Row>
             </div>
         )
