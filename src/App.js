@@ -6,6 +6,7 @@ import SearchCity from './SearchCity';
 import Map from './Map';
 import Weather from './Weather';
 import Movies from './Movies';
+import Restaurants from './Restaurants';
 import APIerr from './APIerr';
 
 class App extends React.Component {
@@ -19,7 +20,8 @@ class App extends React.Component {
       errShow: false,
       city: '',
       movieResults: null,
-      movieResErr: ''
+      movieResErr: '',
+      resResults: null
     }
   }
 
@@ -76,7 +78,7 @@ class App extends React.Component {
       const url = `${process.env.REACT_APP_SERVER}/movies?query=${this.state.city}`;
       const movieResults = await axios.get(url);
       this.setState({ movieResults: movieResults.data });
-      console.log(movieResults.data);
+      this.getRestaurants()
       if (movieResults.data.length <= 0) {
         this.setState({
           movieResErr: `NO MOVIES ABOUT ${this.state.city} AT THIS TIME`,
@@ -89,6 +91,12 @@ class App extends React.Component {
         movieResults: null
       })
     }
+  }
+  getRestaurants = async () => {
+    const url = `${process.env.REACT_APP_SERVER}/restaurants?lat=${this.state.locationObj.lat}&lon=${this.state.locationObj.lon}`;
+    const resResults = await axios.get(url);
+    this.setState({ resResults: resResults.data });
+    console.log(this.state.resResults);
   }
 
   handleErrClose = () => {
@@ -110,6 +118,10 @@ class App extends React.Component {
         />
         <Movies
           movieResults={this.state.movieResults}
+          city={this.state.city}
+        />
+        <Restaurants
+          resResults={this.state.resResults}
           city={this.state.city}
         />
         <APIerr

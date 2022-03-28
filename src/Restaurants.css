@@ -1,0 +1,28 @@
+.resDiv{
+    width:90%;
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    color:white;
+}
+
+.resCard{
+    height:80%;
+    margin:1rem;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.resImg{
+    height:80%;
+    width:100%;
+}
+
+.resH1{
+    margin:auto;
+    color:white;
+}
