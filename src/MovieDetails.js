@@ -2,6 +2,7 @@ import React from "react";
 import './MovieDetails.css';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { Rating } from 'react-simple-star-rating';
 
 class MovieDetails extends React.Component {
     render() {
@@ -15,7 +16,7 @@ class MovieDetails extends React.Component {
                         alt={this.props.movie.original_title}
                     />
                     <p>Release Date: {this.props.movie.release_date}</p>
-                    <p>Rating: {this.props.movie.rating}</p>
+                    <Rating ratingValue={parseInt(this.props.movie.rating) * 10} />
                     <p>{this.props.movie.overview}</p>
                 </Modal.Body>
                 <Modal.Footer className='detailModalFooter'>
