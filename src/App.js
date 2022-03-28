@@ -41,7 +41,7 @@ class App extends React.Component {
         weatherResponse: '',
         weatherResponseErr: '',
         errShow: true,
-        weatherType: '',
+        icon: '',
         movieResErr: '',
         movieResults: null
       });
@@ -56,7 +56,7 @@ class App extends React.Component {
         this.setState({
           weatherResponse: weatherResponse.data,
           weatherResponseErr: '',
-          weatherType: weatherResponse.data[0].type
+          icon: weatherResponse.data[0].icon
         })
       } else {
         this.setState({
@@ -64,7 +64,7 @@ class App extends React.Component {
           errShow: true,
           weatherResponse: '',
           movieResErr: '',
-          weatherType: ''
+          icon: ''
         });
       };
     } catch (e) {
@@ -102,7 +102,7 @@ class App extends React.Component {
         <SearchCity getLocation={this.getLocation} />
         <Map
           locationObj={this.state.locationObj}
-          weatherType={this.state.weatherType}
+          icon={this.state.icon}
         />
         <Weather
           weatherResponse={this.state.weatherResponse}
