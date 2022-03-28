@@ -21,11 +21,12 @@
 }
 
 img{
-    margin-bottom:2rem;
+    margin-bottom:3rem;
     width: 90%;
     transition: 350ms;
     cursor: pointer;
     border-radius: .4em;
+    height:100%
 }
 
 img:hover{
