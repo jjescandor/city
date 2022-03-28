@@ -23,7 +23,7 @@
 .movieImg{
     margin-bottom:3rem;
     width: 90%;
-    transition: 350ms;
+    transition-duration: 350ms;
     cursor: pointer;
     border-radius: .4em;
     height:100%
