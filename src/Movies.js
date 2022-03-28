@@ -37,7 +37,6 @@ class Movies extends React.Component {
                                 movie={value}
                                 idx={idx}
                                 handleClick={this.handleClick}
-
                             />
                         )};
                 </Row>

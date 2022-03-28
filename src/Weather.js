@@ -18,6 +18,7 @@ class Weather extends React.Component {
                                 type={value.type}
                                 date={value.date}
                                 description={value.description}
+                                icon={value.icon}
                             />
                         )}
                 </Accordion>
