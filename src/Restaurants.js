@@ -26,7 +26,7 @@ class Restaurants extends React.Component {
                                                 alt='' /></a>
                                         <Rating className="rating" ratingValue={value.rating * 20} />
                                         <h6>Phone Number: {value.phone}</h6>
-                                        <h6>Address: {value.address}</h6>
+                                        <h6>Address: {`${value.address[0]} ${value.address[1]}`}</h6>
                                     </Card>
                                 </Col>
                             )
