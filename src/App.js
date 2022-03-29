@@ -45,7 +45,8 @@ class App extends React.Component {
         errShow: true,
         icon: '',
         movieResErr: '',
-        movieResults: null
+        movieResults: null,
+        resResults: null
       });
     }
   }
