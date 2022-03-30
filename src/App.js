@@ -21,7 +21,8 @@ class App extends React.Component {
       city: '',
       movieResults: null,
       movieResErr: '',
-      resResults: null
+      resResults: null,
+      date: ''
     }
   }
 
@@ -59,7 +60,8 @@ class App extends React.Component {
         this.setState({
           weatherResponse: weatherResponse.data,
           weatherResponseErr: '',
-          icon: weatherResponse.data[0].icon
+          icon: weatherResponse.data[0].icon,
+          date: weatherResponse.data.date
         })
       } else {
         this.setState({
@@ -112,6 +114,7 @@ class App extends React.Component {
         <Map
           locationObj={this.state.locationObj}
           icon={this.state.icon}
+          date={this.state.date}
         />
         <Weather
           weatherResponse={this.state.weatherResponse}
