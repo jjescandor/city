@@ -22,7 +22,7 @@ class App extends React.Component {
       movieResults: null,
       movieResErr: '',
       resResults: null,
-      date: ''
+      sourceDate: ''
     }
   }
 
@@ -56,12 +56,13 @@ class App extends React.Component {
     try {
       const weatherUrl = `${process.env.REACT_APP_SERVER}/weather?lat=${this.state.locationObj.lat}&lon=${this.state.locationObj.lon}&search=${this.state.city}`;
       const weatherResponse = await axios.get(weatherUrl);
+      console.log(weatherResponse.data)
       if (weatherResponse.data.length > 0) {
         this.setState({
           weatherResponse: weatherResponse.data,
           weatherResponseErr: '',
           icon: weatherResponse.data[0].icon,
-          date: weatherResponse.data.date
+          sourceDate: weatherResponse.data[0].sourceDate
         })
       } else {
         this.setState({
@@ -114,7 +115,7 @@ class App extends React.Component {
         <Map
           locationObj={this.state.locationObj}
           icon={this.state.icon}
-          date={this.state.date}
+          sourceDate={this.state.sourceDate}
         />
         <Weather
           weatherResponse={this.state.weatherResponse}
