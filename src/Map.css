@@ -12,6 +12,10 @@
     align-content: center;
   }
 
+  p{
+    color:lightcoral;
+  }
+
 
   @media (max-width:600px){
     .cityCard{
